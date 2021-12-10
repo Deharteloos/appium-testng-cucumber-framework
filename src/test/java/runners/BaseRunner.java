@@ -22,7 +22,9 @@ public class BaseRunner extends AbstractTestNGCucumberTests {
     @AfterClass
     public void tearDown() {
         AppiumDriverManager.getDriver().quit();
-        AppiumServer.stop();
+        if(AppiumServer.isRunning()) {
+            AppiumServer.stop();
+        }
     }
 
 }

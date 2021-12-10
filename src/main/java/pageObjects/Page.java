@@ -17,6 +17,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,7 +32,7 @@ public class Page {
     private static final Logger LOG = LogManager.getLogger(Page.class);
 
     protected AppiumDriver<MobileElement> driver;
-    protected TouchActions touchActions;
+    protected Actions actions;
     protected TouchAction<?> touchAction;
 
     protected WebDriverWait shortWait;
@@ -49,7 +50,7 @@ public class Page {
     public Page() {
         driver      = Properties.APPIUM_DRIVER_MANAGER.getDriver();
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
-        touchActions = new TouchActions(driver);
+        actions = new Actions(driver);
         if(!Properties.SYSTEM_PROPERTIES_READER.platformName.equals("Android"))
             touchAction = new IOSTouchAction(driver);
         else
@@ -137,7 +138,7 @@ public class Page {
 
     protected void longPress(MobileElement element) {
         if(waitUntil(elementToBeClickable(element)))
-            this.touchActions.longPress(element)
+            this.actions.clickAndHold(element)
                              .perform();
     }
 
