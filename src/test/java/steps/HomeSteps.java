@@ -22,7 +22,8 @@ public class HomeSteps {
      */
     @Given("^I am on the home page$")
     public void iAmOnTheHomePage() {
-        homePage.waitForAppLoading();
+        //homePage.waitForAppLoading();
+        homePage.navigateToEnv();
     }
 
     @And("I click on the user account button")

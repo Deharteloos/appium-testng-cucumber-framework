@@ -6,6 +6,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static enums.Env.PRODUCTION;
+
 public class HomePage extends Page {
 
     private static final Logger LOG = LogManager.getLogger(HomePage.class);
@@ -23,6 +25,10 @@ public class HomePage extends Page {
         } else {
             LOG.warn("The application is stucked on the splash screen");
         }
+    }
+
+    public void navigateToEnv() {
+        get(PRODUCTION.getUrl());
     }
 
 }
